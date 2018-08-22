@@ -2,13 +2,21 @@ FROM centos
 WORKDIR /root
 
 # Lock versions
-ENV STAR_VERSION=2.6.1a \
+ENV SAMTOOLS_VERSION=1.9 \
+    STAR_VERSION=2.6.1a \
     GATK_VERSION=4.0.8.1
 
 # Install softwares
-RUN yum update -y && \
-  yum install -y git java tmux unzip vim wget zsh && \
+RUN yum update -y && yum install -y \
+    bzip2 git gcc java make tmux unzip vim wget zsh \
+    bzip2-devel libcurl-devel ncurses-devel openssl-devel xz-devel zlib-devel && \
   sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+RUN wget https://github.com/samtools/samtools/releases/download/$SAMTOOLS_VERSION/samtools-$SAMTOOLS_VERSION.tar.bz2 && \
+  tar -xjf samtools-$SAMTOOLS_VERSION.tar.bz2 && \
+  rm samtools-$SAMTOOLS_VERSION.tar.bz2 && \
+  cd samtools-$SAMTOOLS_VERSION && \
+  ./configure && make && \
+  ln -s /root/samtools-1.9/samtools /usr/bin/
 RUN wget https://github.com/alexdobin/STAR/archive/$STAR_VERSION.tar.gz && \
   tar -xzf $STAR_VERSION.tar.gz && \
   rm $STAR_VERSION.tar.gz && \
