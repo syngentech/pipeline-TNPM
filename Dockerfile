@@ -1,5 +1,6 @@
 FROM centos
 WORKDIR /root
+ADD docs /root/docs
 
 # Lock versions
 ENV SAMTOOLS_VERSION=1.9 \
@@ -33,5 +34,4 @@ RUN wget http://ccb.jhu.edu/software/stringtie/dl/gffread-$GFFREAD_VERSION.Linux
 
 # Setup environments
 WORKDIR /data
-ADD README.md /root/
 CMD ["tmux"]
