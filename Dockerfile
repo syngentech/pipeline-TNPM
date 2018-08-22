@@ -4,7 +4,8 @@ WORKDIR /root
 # Lock versions
 ENV SAMTOOLS_VERSION=1.9 \
     STAR_VERSION=2.6.1a \
-    GATK_VERSION=4.0.8.1
+    GATK_VERSION=4.0.8.1 \
+    GFFREAD_VERSION=0.9.12
 
 # Install softwares
 RUN yum update -y && yum install -y \
@@ -25,6 +26,10 @@ RUN wget https://github.com/broadinstitute/gatk/releases/download/$GATK_VERSION/
   unzip gatk-$GATK_VERSION.zip && \
   rm gatk-$GATK_VERSION.zip && \
   ln -s /root/gatk-$GATK_VERSION/gatk /usr/bin/
+RUN wget wget http://ccb.jhu.edu/software/stringtie/dl/gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
+  tar -xzf gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
+  rm gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
+  ln -s /root/gffread-$GFFREAD_VERSION.Linux_x86_64/gffread /usr/bin/
 
 # Setup environments
 WORKDIR /data
