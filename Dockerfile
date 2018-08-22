@@ -17,16 +17,16 @@ RUN wget https://github.com/samtools/samtools/releases/download/$SAMTOOLS_VERSIO
   rm samtools-$SAMTOOLS_VERSION.tar.bz2 && \
   cd samtools-$SAMTOOLS_VERSION && \
   ./configure && make && \
-  ln -s /root/samtools-1.9/samtools /usr/bin/
+  ln -s /root/samtools-$SAMTOOLS_VERSION/samtools /usr/bin/
 RUN wget https://github.com/alexdobin/STAR/archive/$STAR_VERSION.tar.gz && \
   tar -xzf $STAR_VERSION.tar.gz && \
   rm $STAR_VERSION.tar.gz && \
-  ln -s /root/STAR-2.6.1a/bin/Linux_x86_64_static/STAR /usr/bin/
+  ln -s /root/STAR-$STAR_VERSION/bin/Linux_x86_64_static/STAR /usr/bin/
 RUN wget https://github.com/broadinstitute/gatk/releases/download/$GATK_VERSION/gatk-$GATK_VERSION.zip && \
   unzip gatk-$GATK_VERSION.zip && \
   rm gatk-$GATK_VERSION.zip && \
   ln -s /root/gatk-$GATK_VERSION/gatk /usr/bin/
-RUN wget wget http://ccb.jhu.edu/software/stringtie/dl/gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
+RUN wget http://ccb.jhu.edu/software/stringtie/dl/gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
   tar -xzf gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
   rm gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
   ln -s /root/gffread-$GFFREAD_VERSION.Linux_x86_64/gffread /usr/bin/
