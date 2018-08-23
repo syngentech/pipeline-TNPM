@@ -7,5 +7,6 @@ Medicine (TNPM) Project.
 
 Documentations were splitted into different topics under */docs*:
 
-- [Naming conventions](./docs/NAMING.md)
 - [**Running guide**](./docs/RUNNING.md)
+- [Naming conventions](./docs/NAMING.md)
+- [Frequently asked questions](./docs/FAQs.md)
