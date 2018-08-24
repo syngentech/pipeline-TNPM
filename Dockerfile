@@ -1,6 +1,7 @@
 FROM centos
 WORKDIR /root
 ADD docs /root/docs
+Add .tmux.conf /root
 
 # Lock versions
 ENV SAMTOOLS_VERSION=1.9 \
