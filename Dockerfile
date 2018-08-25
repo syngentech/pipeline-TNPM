@@ -1,17 +1,17 @@
 FROM centos
 WORKDIR /root
 ADD docs /root/docs
+ADD utils /root/utils
 Add .tmux.conf /root
 
 # Lock versions
 ENV SAMTOOLS_VERSION=1.9 \
     STAR_VERSION=2.6.1a \
-    GATK_VERSION=4.0.8.1 \
-    GFFREAD_VERSION=0.9.12
+    GATK_VERSION=4.0.8.1
 
 # Install softwares
 RUN yum update -y && yum install -y \
-    bzip2 git gcc java make tmux unzip vim wget zsh \
+    bzip2 git gcc java make ruby tmux unzip vim wget zsh \
     bzip2-devel libcurl-devel ncurses-devel openssl-devel xz-devel zlib-devel && \
   sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 RUN wget https://github.com/samtools/samtools/releases/download/$SAMTOOLS_VERSION/samtools-$SAMTOOLS_VERSION.tar.bz2 && \
@@ -28,10 +28,6 @@ RUN wget https://github.com/broadinstitute/gatk/releases/download/$GATK_VERSION/
   unzip gatk-$GATK_VERSION.zip && \
   rm gatk-$GATK_VERSION.zip && \
   ln -s /root/gatk-$GATK_VERSION/gatk /usr/bin/
-RUN wget http://ccb.jhu.edu/software/stringtie/dl/gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
-  tar -xzf gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
-  rm gffread-$GFFREAD_VERSION.Linux_x86_64.tar.gz && \
-  ln -s /root/gffread-$GFFREAD_VERSION.Linux_x86_64/gffread /usr/bin/
 
 # Setup environments
 WORKDIR /data
