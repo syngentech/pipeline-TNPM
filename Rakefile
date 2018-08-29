@@ -1,4 +1,4 @@
-VERSION = '0.2'.freeze
+VERSION = '0.3'.freeze
 
 task :default do
   system("sudo docker build --tag tnpm:#{VERSION} --rm .")
