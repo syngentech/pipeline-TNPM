@@ -85,7 +85,7 @@ gatk ApplyBQSR -R genomes/Homo_sapiens_assembly38.fasta \
 
 ```bash
 # Call somatic variants
-gatk Mutect2 -R genomes/Homo_sapiens_assembly38.fasta \
+gatk --java-options "-Xmx16g" Mutect2 -R genomes/Homo_sapiens_assembly38.fasta \
   -I DAxxx.bam -tumor DAxxx -I DAyyy.bam -normal DAyyy \
   -O PRzzz.vcf.gz -bamout PRzzz.bam
 ```
