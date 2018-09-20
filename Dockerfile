@@ -14,7 +14,9 @@ ENV SAMTOOLS_VERSION=1.9 \
 RUN yum update -y && yum install -y \
     bzip2 git gcc java make ruby tcsh tmux unzip vim wget zsh \
     bzip2-devel libcurl-devel ncurses-devel openssl-devel xz-devel zlib-devel && \
-  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" && \
+  curl https://bootstrap.pypa.io/get-pip.py | python && \
+  pip install Biopython numpy pandas
 RUN wget https://github.com/samtools/samtools/releases/download/$SAMTOOLS_VERSION/samtools-$SAMTOOLS_VERSION.tar.bz2 && \
   tar -xjf samtools-$SAMTOOLS_VERSION.tar.bz2 && \
   rm samtools-$SAMTOOLS_VERSION.tar.bz2 && \
