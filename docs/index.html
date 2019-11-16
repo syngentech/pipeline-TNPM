@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TNPM Pipeline</title>
+</head>
+<body>
+  <div id="content"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    let req = new XMLHttpRequest()
+    req.addEventListener('load', function () {
+      document.getElementById('content').innerHTML = marked(this.responseText)
+    });
+    req.open('GET', './FAQS.md')
+    req.send()
+  </script>
+</body>
+</html>
